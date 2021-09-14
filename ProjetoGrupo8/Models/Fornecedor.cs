@@ -8,7 +8,7 @@ namespace ProjetoGrupo8.Models
 {
     public class Fornecedor : Pessoa
     {
-        public string baseCod = "RF000";
+        public string baseCod = "RF00";
         public int idFornecedor = 0;
         public string fornecedorTxt = "fornecedor.txt";
 

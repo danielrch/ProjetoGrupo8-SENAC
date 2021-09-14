@@ -8,7 +8,7 @@ namespace ProjetoGrupo8.Models
 {
     public class Aluno : Pessoa
     {
-        public string baseCod = "RA000";
+        public string baseCod = "RA00";
         public string alunoTxt = "aluno.txt";
         int idAluno;
 
