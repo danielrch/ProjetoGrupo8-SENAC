@@ -8,25 +8,44 @@ namespace ProjetoGrupo8.Models
 {
     public class Aluno : Pessoa
     {
-        public string baseCod = "RA00";
+        private readonly string baseCod = "RA00";
         public string alunoTxt = "aluno.txt";
-        int idAluno;
 
-        public string NomeAluno { get; set; }
+        private static int IdAluno { get; set; }
 
-        public string CpfAluno { get; set; }
+        private string NomeAluno { get; set; }
 
-        public static List<Pessoa> ListaAluno { get; set; } = new List<Pessoa>();
+        private string CpfAluno { get; set; }
+
+        private static List<Pessoa> ListaAluno { get; set; } = new List<Pessoa>();
 
         public Aluno(string tipoPessoa, string nomeAluno, string cpfAluno, string telefone, string email)
             : base(tipoPessoa, telefone, email)
         {
-            idAluno++;
             TipoPessoa = tipoPessoa;
             NomeAluno = nomeAluno;
             CpfAluno = cpfAluno;
             Telefone = telefone;
             Email = email;
+            IdAluno++;
+        }
+
+        public Aluno
+            (string tipoPessoa, string nomeAluno, string cpfAluno, string telefone, string email, string logradouro, string numero, string cep, string cidade, string bairro, string estado)
+            : base(tipoPessoa, telefone, email, logradouro, numero, cep, cidade, bairro, estado)
+        {
+            TipoPessoa = tipoPessoa;
+            NomeAluno = nomeAluno;
+            CpfAluno = cpfAluno;
+            Telefone = telefone;
+            Email = email;
+            Logradouro = logradouro;
+            Numero = numero;
+            CEP = cep;
+            Cidade = cidade;
+            Bairro = bairro;
+            Estado = estado;
+            IdAluno++;
         }
 
         public override void CadastrarPessoa(Pessoa pessoa)
@@ -35,17 +54,16 @@ namespace ProjetoGrupo8.Models
             Utils.EscreverTxt(ListaAluno, alunoTxt);
         }
 
-        public override void Imprimir()
-        {
-            foreach (var pessoa in ListaAluno)
-            {
-                Console.WriteLine(pessoa);
-            }
-        }
-
         public override string ToString()
         {
-            return $"Id: {baseCod}{idAluno}, nome: {NomeAluno}, CPF: {CpfAluno} \n";
+            return $"Id: {baseCod}{IdAluno++}, Nome: {NomeAluno}, CPF: {CpfAluno} \n";
         }
+
+        // OVERRIDE COM DADOS COMPLETOS. PARA USAR, COMENTAR O OVERRIDE ACIMA E DESCOMENTAR ESTE
+        //public override string ToString()
+        //{
+        //    return $"Id: {baseCod}{idAluno}, Pessoa: {TipoPessoa}, Nome: {NomeAluno}, CPF {CpfAluno}, Telefone: {Telefone}, Email: {Email}" +
+        //        $", Logradouro: {Logradouro}, Numero: {Numero}, CEP: {CEP}, Cidade: {Cidade}, Bairro: {Bairro}, Estado: {Estado} \n";
+        //}
     }
 }

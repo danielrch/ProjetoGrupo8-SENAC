@@ -8,25 +8,44 @@ namespace ProjetoGrupo8.Models
 {
     public class Fornecedor : Pessoa
     {
-        public string baseCod = "RF00";
-        public int idFornecedor = 0;
+        private readonly string baseCod = "RF00";
         public string fornecedorTxt = "fornecedor.txt";
 
-        public string NomeFornecedor { get; set; }
+        private static int IdFornecedor { get; set; }
 
-        public string CnpjFornecedor { get; set; }
+        private string NomeFornecedor { get; set; }
 
-        public static List<Pessoa> ListaFornecedor { get; set; } = new List<Pessoa>();
+        private string CnpjFornecedor { get; set; }
+
+        private static List<Pessoa> ListaFornecedor { get; set; } = new List<Pessoa>();
 
         public Fornecedor(string tipoPessoa, string nomeFornecedor, string cnpjFornecedor, string telefone, string email) 
             : base(tipoPessoa, telefone, email)
         {
-            idFornecedor += idFornecedor;
             TipoPessoa = tipoPessoa;
             NomeFornecedor = nomeFornecedor;
             CnpjFornecedor = cnpjFornecedor;
             Telefone = telefone;
             Email = email;
+            IdFornecedor++;
+        }
+
+        public Fornecedor
+            (string tipoPessoa, string nomeFornecedor, string cnpjFornecedor, string telefone, string email, string logradouro, string numero, string cep, string cidade, string bairro, string estado)
+            : base(tipoPessoa, telefone, email, logradouro, numero, cep, cidade, bairro, estado)
+        {
+            TipoPessoa = tipoPessoa;
+            NomeFornecedor = nomeFornecedor;
+            CnpjFornecedor = cnpjFornecedor;
+            Telefone = telefone;
+            Email = email;
+            Logradouro = logradouro;
+            Numero = numero;
+            CEP = cep;
+            Cidade = cidade;
+            Bairro = bairro;
+            Estado = estado;
+            IdFornecedor++;
         }
 
         public override void CadastrarPessoa(Pessoa pessoa)
@@ -35,17 +54,17 @@ namespace ProjetoGrupo8.Models
             Utils.EscreverTxt(ListaFornecedor, fornecedorTxt);
         }
 
-        public override void Imprimir()
-        {
-            foreach (var pessoa in ListaFornecedor)
-            {
-                Console.WriteLine(pessoa);
-            }
-        }
-
+        
         public override string ToString()
         {
-            return $"Id: {baseCod}{idFornecedor}, nome: {NomeFornecedor}, CPF: {CnpjFornecedor} \n";
+            return $"Id: {baseCod}{IdFornecedor++}, Nome: {NomeFornecedor}, CNPJ: {CnpjFornecedor} \n";
         }
+
+        // OVERRIDE COM DADOS COMPLETOS. PARA USAR, COMENTAR O OVERRIDE ACIMA E DESCOMENTAR ESTE
+        //public override string ToString()
+        //{
+        //    return $"Id: {baseCod}{idFornecedor}, Pessoa: {TipoPessoa}, Nome: {NomeFornecedor}, CNPJ: {CnpjFornecedor}, Telefone: {Telefone}, Email: {Email}" +
+        //        $", Logradouro: {Logradouro}, Numero: {Numero}, CEP: {CEP}, Cidade: {Cidade}, Bairro: {Bairro}, Estado: {Estado} \n";
+        //}
     }
 }
