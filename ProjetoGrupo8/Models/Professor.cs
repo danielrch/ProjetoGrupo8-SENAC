@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace ProjetoGrupo8.Models
 {
+    
     public class Professor : Pessoa  
     {
-        private readonly string baseCod = "RP00";
+        private int id;
+
+        private readonly string baseCod = "RP001";
         public string professorTxt = "professor.txt";
 
         private static int IdProfessor { get; set; }
+        
 
         private string NomeProfessor { get; set; }
 
@@ -27,14 +31,15 @@ namespace ProjetoGrupo8.Models
             CpfProfessor = cpfProfessor;
             Telefone = telefone;
             Email = email;
-            IdProfessor++;
+
+
+            id = IdProfessor++;
         }
 
         public Professor
             (string tipoPessoa, string nomeProfessor, string cpfProfessor, string telefone, string email, string logradouro, string numero, string cep, string cidade, string bairro, string estado)
             : base(tipoPessoa, telefone, email, logradouro, numero, cep, cidade, bairro, estado)
         {
-            IdProfessor += IdProfessor;
             TipoPessoa = tipoPessoa;
             NomeProfessor = nomeProfessor;
             CpfProfessor = cpfProfessor;
@@ -46,7 +51,7 @@ namespace ProjetoGrupo8.Models
             Cidade = cidade;
             Bairro = bairro;
             Estado = estado;
-            IdProfessor++;
+            id = IdProfessor++;
         }
 
         public override void CadastrarPessoa(Pessoa pessoa)
@@ -57,13 +62,13 @@ namespace ProjetoGrupo8.Models
         
         public override string ToString()
         {
-            return $"Id: {baseCod}{IdProfessor++}, Nome {NomeProfessor}, CPF {CpfProfessor} \n";
+            return $"Id: {baseCod}{id}, Nome: {NomeProfessor}, CPF: {CpfProfessor} \n";
         }
 
         // OVERRIDE COM DADOS COMPLETOS. PARA USAR, COMENTAR O OVERRIDE ACIMA E DESCOMENTAR ESTE
         //public override string ToString()
         //{
-        //    return $"Id: {baseCod}{idProfessor}, Pessoa: {TipoPessoa}, Nome: {NomeProfessor}, CPF {CpfProfessor}, Telefone: {Telefone}, Email: {Email}" +
+        //    return $"Id: {baseCod}{id}, Pessoa: {TipoPessoa}, Nome: {NomeProfessor}, CPF {CpfProfessor}, Telefone: {Telefone}, Email: {Email}" +
         //        $", Logradouro: {Logradouro}, Numero: {Numero}, CEP: {CEP}, Cidade: {Cidade}, Bairro: {Bairro}, Estado: {Estado} \n";
         //}
 

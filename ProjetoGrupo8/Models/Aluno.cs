@@ -8,7 +8,9 @@ namespace ProjetoGrupo8.Models
 {
     public class Aluno : Pessoa
     {
-        private readonly string baseCod = "RA00";
+        private int id;
+
+        private readonly string baseCod = "RA001";
         public string alunoTxt = "aluno.txt";
 
         private static int IdAluno { get; set; }
@@ -27,7 +29,7 @@ namespace ProjetoGrupo8.Models
             CpfAluno = cpfAluno;
             Telefone = telefone;
             Email = email;
-            IdAluno++;
+            id = IdAluno++;
         }
 
         public Aluno
@@ -45,7 +47,7 @@ namespace ProjetoGrupo8.Models
             Cidade = cidade;
             Bairro = bairro;
             Estado = estado;
-            IdAluno++;
+            id = IdAluno++;
         }
 
         public override void CadastrarPessoa(Pessoa pessoa)
@@ -56,13 +58,13 @@ namespace ProjetoGrupo8.Models
 
         public override string ToString()
         {
-            return $"Id: {baseCod}{IdAluno++}, Nome: {NomeAluno}, CPF: {CpfAluno} \n";
+            return $"Id: {baseCod}{id}, Nome: {NomeAluno}, CPF: {CpfAluno} \n";
         }
 
         // OVERRIDE COM DADOS COMPLETOS. PARA USAR, COMENTAR O OVERRIDE ACIMA E DESCOMENTAR ESTE
         //public override string ToString()
         //{
-        //    return $"Id: {baseCod}{idAluno}, Pessoa: {TipoPessoa}, Nome: {NomeAluno}, CPF {CpfAluno}, Telefone: {Telefone}, Email: {Email}" +
+        //    return $"Id: {baseCod}{id}, Pessoa: {TipoPessoa}, Nome: {NomeAluno}, CPF {CpfAluno}, Telefone: {Telefone}, Email: {Email}" +
         //        $", Logradouro: {Logradouro}, Numero: {Numero}, CEP: {CEP}, Cidade: {Cidade}, Bairro: {Bairro}, Estado: {Estado} \n";
         //}
     }
